@@ -8,6 +8,7 @@ const SignUp = () => {
   const [Name, setName] = useState("");
   const [Image, setImage] = useState("");
   const [accept, setAccept] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
 
   const myRef = useRef(null);
 
@@ -36,6 +37,7 @@ const SignUp = () => {
       }
     } catch (err) {
       setEmailError(err.response.status);
+      console.log(err);
     }
   }
   return (
@@ -43,12 +45,14 @@ const SignUp = () => {
       <form action="" onSubmit={signUp}>
         <input
           className="file"
+          
           type="file"
           ref={myRef}
           hidden
           accept="image/*"
           onChange={(e) => {
-            setImage(URL.createObjectURL(e.target.files[0]));
+            setImage(e.target.files[0]);
+            setImageUrl(URL.createObjectURL(e.target.files[0]));
           }}
         />
         <div className="setImage">
@@ -56,7 +60,7 @@ const SignUp = () => {
             <i className="bx bxs-camera"></i>
             <h4>click here</h4>
           </div>
-          <img src={`${Image}`} alt="" />
+          {imageUrl && <img src={imageUrl} alt="" />}
         </div>
         {accept && Image.length <= 0 && (
           <p className="error">click here to upload image</p>

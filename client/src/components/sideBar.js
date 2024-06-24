@@ -26,13 +26,11 @@ const SideBar = () => {
 
   const [userName, setUserName] = useState(null);
 
-  const [image, setImage] = useState(null);
   useEffect(() => {
     const id = localStorage.getItem("id");
     fetch(`http://localhost:5000/api/users/${id}`).then((res) =>
       res.json().then((data) => {
         setUserName(data.name);
-        setImage(data.image);
       })
     );
   }, [userName]);
@@ -45,7 +43,7 @@ const SideBar = () => {
         onClick={responsive}
       ></i>
       <Link to="/home/profile" className="myAccount">
-        <img src={`${image}`} alt="" />
+        <img src="./Images/img-1.jpg" alt="" />
         <div className="accountInfo">
           <h4>{userName}</h4>
           <h5>Web developer</h5>
