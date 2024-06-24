@@ -1,0 +1,55 @@
+.Show {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Show h1 {
+  color: var(--text-color);
+  margin: 20px 0px;
+}
+
+.Show table {
+  width: 60%;
+  color: var(--text-color);
+}
+
+.Show table,
+.Show tr,
+.Show td {
+  border: 1px solid var(--text-color);
+  border-collapse: collapse;
+}
+
+.Show tr,
+.Show td {
+  height: 40px;
+}
+
+.Show td {
+  padding: 0px 10px;
+  width: 80%;
+}
+
+.Show th {
+  padding: 0px 10px;
+  width: 26%;
+  text-align: start;
+}
+
+@media(max-width:749px) {
+  .Show {
+    width: 100%;
+  }
+
+  .Show h1 {
+    font-size: 30px;
+  }
+
+  .Show table {
+    width: 90%;
+    font-size: 14px;
+  }
+}

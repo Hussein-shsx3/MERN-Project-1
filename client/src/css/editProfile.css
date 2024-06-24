@@ -1,0 +1,134 @@
+.Profile {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.profileC {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileC .setImage {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.profileC .setImage img {
+  width: 200px;
+  height: 200px;
+}
+
+.profileC .setImage .icon {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--image-color);
+  z-index: 1;
+}
+
+.profileC .setImage .icon i {
+  font-size: 40px;
+  color: white;
+}
+
+.profileC .setImage .icon h4 {
+  color: white;
+}
+
+.profileC .file {
+  position: absolute;
+  opacity: 0;
+  top: 90px;
+  left: 33%;
+}
+
+
+.profileC .InputC {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.profileC .profileInput {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0px;
+}
+
+.profileC .profileInput label {
+  color: var(--text-color);
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.profileC .profileInput input {
+  color: var(--text-color);
+  height: 35px;
+  outline: none;
+  border: none;
+  padding: 0px 10px;
+  background-color: var(--input-color);
+  font-size: 16px;
+}
+
+.profileC .submit {
+  width: 48%;
+  height: 35px;
+  outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-color-hover);
+  font-size: 16px;
+  transform: translateY(14px);
+  cursor: pointer;
+}
+
+@media(min-width:750px) and (max-width:1300px) {
+  .Profile .profileC {
+    width: 95%;
+  }
+
+  .profileC .profileInput,
+  .profileC .submit {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+  }
+}
+
+@media(max-width:750px) {
+  .Profile .profileC {
+    width: 95%;
+  }
+
+  .profileC .profileInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+  }
+}

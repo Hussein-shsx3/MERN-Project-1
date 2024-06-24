@@ -1,0 +1,52 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+:root {
+  /* =====Colors===== */
+  --body-color: #E4E9F7;
+  --sidebar-color: #FFF;
+  --primary-color: #695CFE;
+  --primary-color-light: #F6F5FF;
+  --toogle-color: #DDD;
+  --text-color: #707070;
+  --text-color-hover: #FFF;
+  --image-color: #08080831;
+  --input-color: #08080831;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color);
+}
+
+body {
+  background: var(--body-color);
+}
+
+body.dark {
+  --body-color: #18191A;
+  --sidebar-color: #242526;
+  --primary-color: #3A3B3C;
+  --primary-color-light: #3A3B3C;
+  --toogle-color: #FFF;
+  --text-color: #CCC;
+  --text-color-hover: #FFF;
+  --input-color: #5d5b5b31;
+}
+
+.App {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

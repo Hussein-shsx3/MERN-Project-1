@@ -1,0 +1,226 @@
+.sideBar {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  min-width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sidebar-color);
+  z-index: 10;
+}
+
+.myAccount {
+  position: relative;
+  margin-top: 15px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  text-decoration: none;
+}
+
+.myAccount img {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.accountInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.accountInfo h4 {
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.accountInfo h5 {
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.sideBar nav {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.search {
+  padding: 0px 20px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  background: var(--primary-color-light);
+  border-radius: 5px;
+}
+
+.search i {
+  font-size: 20px;
+  color: var(--text-color);
+  margin-right: 20px;
+}
+
+.search input {
+  border: none;
+  font-size: 15px;
+  background-color: transparent;
+  outline: none;
+}
+
+.sideBar nav a,
+.logout,
+.darkMode {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 0px 20px;
+  font-size: 15px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  border-radius: 5px;
+  margin: 5px 0px;
+  transition: all 0.2s;
+}
+
+.sideBar nav a i,
+.logout i {
+  font-size: 20px;
+  margin-right: 25px;
+}
+
+.sideBar nav a:hover,
+.logout:hover {
+  background: var(--primary-color);
+  color: var(--text-color-hover);
+}
+
+.sideBar nav a:hover h4 {
+  color: var(--text-color-hover);
+}
+
+.sideBar nav .activeBage {
+  background: var(--primary-color);
+  color: var(--text-color-hover);
+}
+
+.sideBar nav .activeBage h4 {
+  color: var(--text-color-hover);
+}
+
+.logout {
+  margin-top: 48vh;
+  width: 90%;
+}
+.logout:hover h4{
+  color: var(--text-color-hover);
+}
+.darkMode {
+  width: 90%;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color-light);
+}
+
+.darkMode i {
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.bx-chevron-down-circle {
+  display: none;
+  color: var(--text-color);
+  z-index: 1;
+}
+
+@media(min-width:1670px) {}
+
+@media(min-width:750px) and (max-width:1669px) {}
+
+@media(max-width:949px) {
+
+  .App {
+    flex-direction: column;
+  }
+
+  .sideBar {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+  }
+
+  .bx-chevron-down-circle {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    font-size: 30px;
+  }
+
+  .sideBar.active {
+    height: 100vh;
+  }
+
+}
+
+
+/* .sideBar {
+  width: 5%;
+}
+
+.search {
+  padding: 0px;
+  width: 90%;
+  justify-content: center;
+}
+
+
+.myAccount,.logout {
+  justify-content: center;
+}
+
+.myAccount img {
+  margin-right: 0px;
+}
+
+.accountInfo,
+.darkMode i,
+.darkMode h4,
+.sideBar nav a h4,
+.search input,
+.logout h4 {
+  display: none;
+}
+
+.sideBar nav a,
+.darkMode {
+  text-decoration: none;
+  padding: 0px;
+  justify-content: center;
+}
+
+.sideBar nav a i,
+.logout i,
+.search i {
+  margin-right: 0px;
+} */

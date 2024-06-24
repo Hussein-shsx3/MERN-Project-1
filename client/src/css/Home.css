@@ -1,0 +1,151 @@
+.Home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Home table {
+  width: 95%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  background: var(--sidebar-color);
+  color: var(--text-color);
+  overflow: scroll;
+}
+
+.Home table tbody {
+  width: 100%;
+}
+
+.Home table tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Home table tr td,
+.Home table tr th {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.Home table tr td {
+  font-size: 14px;
+}
+
+.Home table tr th {
+  font-size: 16px;
+}
+
+.Home table tr .id {
+  width: 30%;
+  justify-content: center;
+}
+
+.Home table tr .lastUpdate,
+.Home table tr .action {
+  width: 50%;
+}
+
+.Home table tr:nth-child(odd) {
+  background-color: var(--primary-color-light);
+}
+
+.Home table tr:nth-child(1) {
+  background-color: var(--primary-color);
+  color: var(--text-color-hover);
+  position: sticky;
+  top: 0px;
+}
+
+.Home table tr td a {
+  color: var(--text-color);
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0px 3px;
+}
+
+.Home .bx-show:hover {
+  color: green;
+}
+
+.Home .bx-edit-alt:hover {
+  color: rgb(255, 204, 0);
+}
+
+.Home .bx-trash:hover {
+  color: red;
+}
+
+@media(min-width:950px) and (max-width:1150px) {
+  .Home table tr td {
+    font-size: 13px;
+  }
+
+  .Home table tr th {
+    font-size: 15px;
+  }
+
+  .Home table tr td a {
+    font-size: 15px;
+  }
+}
+
+@media (min-width:560px) and (max-width:950px) {
+  .Home {
+    height: 89vh;
+    width: 100%;
+  }
+
+  .Home table {
+    width: 98%;
+    height: 80vh;
+  }
+
+  .Home table tr td {
+    font-size: 10px;
+  }
+
+  .Home table tr th {
+    font-size: 11px;
+  }
+
+  .Home table tr td a {
+    font-size: 13px;
+  }
+}
+
+@media (max-width:559px) {
+  .Home {
+    width: 100%;
+    height: 87vh;
+  }
+
+  .Home table {
+    width: 99%;
+    height: 80vh;
+  }
+
+  .Home table tr td {
+    font-size: 9px;
+  }
+
+  .Home table tr th {
+    font-size: 9px;
+  }
+
+  .Home table tr td a {
+    font-size: 11px;
+    margin: 0px 2px;
+  }
+
+}
