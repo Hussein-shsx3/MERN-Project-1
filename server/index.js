@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 import regRoute from "./routes/register.js";
 import loginRoute from "./routes/login.js";
@@ -11,7 +12,13 @@ import CustomersRoute from "./routes/customer.js";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 dotenv.config();
 
 app.use("/api/register", regRoute);

@@ -4,11 +4,11 @@ const CustomerSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   gender: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   country: { type: String, required: true },
   telephone: { type: String, required: true },
   birthday: { type: Date, required: true },
-  createdOn: { type: Date, default : Date.now },
+  createdOn: { type: Date, default: Date.now },
   lastUpdated: { type: Date, default: Date.now },
   customerOwner: {
     type: mongoose.Types.ObjectId,

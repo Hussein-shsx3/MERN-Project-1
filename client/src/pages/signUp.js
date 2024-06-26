@@ -13,6 +13,26 @@ const SignUp = () => {
   const myRef = useRef(null);
 
   const [emailError, setEmailError] = useState("");
+
+  const uploadFile = async () => {
+    const data = new FormData();
+    data.append("file", Image);
+    data.append("upload_preset", "images_preset");
+    try {
+      let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+      let resourceType = "image";
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`,
+        data
+      );
+      const secure_url = response.data.secure_url;
+      console.log(secure_url);
+      return secure_url;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   async function signUp(e) {
     e.preventDefault();
     setAccept(true);
@@ -24,15 +44,17 @@ const SignUp = () => {
     }
     try {
       if (flag) {
+        const imgUrl = await uploadFile();
+        console.log(imgUrl);
         let res = await axios.post("http://localhost:5000/api/register", {
           name: Name,
           email: Email,
           password: Password,
-          image: Image,
+          image: imgUrl,
         });
         if (res.status === 201) {
           localStorage.setItem("id", res.data._id);
-          window.location.pathname = "/home";
+          window.location.pathname = "/";
         }
       }
     } catch (err) {
@@ -40,12 +62,12 @@ const SignUp = () => {
       console.log(err);
     }
   }
+
   return (
     <div className="Sign">
       <form action="" onSubmit={signUp}>
         <input
           className="file"
-          
           type="file"
           ref={myRef}
           hidden
@@ -116,7 +138,7 @@ const SignUp = () => {
         <button>SignUp</button>
         <div className="swapSign">
           <h5>
-            I have an account already ? <Link to="/signIn">SignIn</Link>
+            I have an account already ? <Link to="/">SignIn</Link>
           </h5>
         </div>
       </form>

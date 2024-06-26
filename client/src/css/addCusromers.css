@@ -16,3 +16,10 @@ form .input .submit {
   font-size: 16px;
   cursor: pointer;
 }
+
+
+@media(max-width:949px) {
+  .AddCustomers {
+    width: 100%;
+  }
+}

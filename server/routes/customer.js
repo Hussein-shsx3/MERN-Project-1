@@ -8,10 +8,6 @@ const router = express.Router();
 router.post("/", async (req, res, next) => {
   try {
     //* Find Customer
-    const findCustomer = await Customer.findOne({ email: req.body.email });
-    if (findCustomer) {
-      return res.status(400).send("User already exists!");
-    }
     const newCustomer = new Customer({
       firstName: req.body.firstName,
       lastName: req.body.lastName,

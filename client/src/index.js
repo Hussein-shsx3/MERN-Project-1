@@ -9,7 +9,7 @@ import "./css/Home.css";
 import "./css/sideBar.css";
 import "./css/show.css";
 import "./css/sign.css";
-import "./css/editProfile.css";
+import "./css/profile.css";
 import SignIn from "./pages/signIn";
 import SignUp from "./pages/signUp";
 import App from "./App";
@@ -48,11 +48,11 @@ const router = createBrowserRouter([
         element: <Profile />,
         children: [
           {
-            path: "/home/profile/hi",
+            path: "/home/profile/",
             element: <ProfileInfo />,
           },
           {
-            path: "/home/profile/",
+            path: "/home/profile/editProfile",
             element: <EditProfile />,
           },
         ],

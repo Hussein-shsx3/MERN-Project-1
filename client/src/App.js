@@ -1,5 +1,4 @@
 import React from "react";
-import "./css/App.css";
 import SideBar from "./components/sideBar";
 import { Outlet } from "react-router-dom";
 

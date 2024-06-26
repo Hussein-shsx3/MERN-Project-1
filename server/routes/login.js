@@ -1,6 +1,7 @@
 import express from "express";
 import Users from "../models/Usres.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -17,6 +18,10 @@ router.post("/", async (req, res, next) => {
       findUser.password
     );
     if (passwordMatch) {
+      const token = jwt.sign({ userId: findUser._id }, process.env.KEY, {
+        expiresIn: "1h",
+      });
+      res.cookie("token", token)
       res.status(200).json(findUser);
     } else {
       res.status(400).send("Wrong email or password!");

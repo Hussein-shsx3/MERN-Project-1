@@ -13,16 +13,17 @@ const Edit = () => {
   const [run, setRun] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/customers/${customerId}`).then((res) =>
-      res.json().then((data) => {
-        setFirstName(data.firstName);
-        setLastName(data.lastName);
-        setGender(data.gender);
-        setEmail(data.email);
-        setCountry(data.country);
-        setBirthDay(data.birthday);
-        setTelephone(data.telephone);
-      })
+    fetch(`http://localhost:5000/api/customers/information/${customerId}`).then(
+      (res) =>
+        res.json().then((data) => {
+          setFirstName(data.firstName);
+          setLastName(data.lastName);
+          setGender(data.gender);
+          setEmail(data.email);
+          setCountry(data.country);
+          setBirthDay(data.birthday);
+          setTelephone(data.telephone);
+        })
     );
   }, [customerId]);
   async function update(e) {
@@ -51,7 +52,7 @@ const Edit = () => {
   async function deleteCustomer() {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/customers/${customerId}`
+        `http://localhost:5000/api/customers/information/${customerId}`
       );
       if (res.status === 200) {
         setRun("deleted was successfully");

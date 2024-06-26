@@ -19,14 +19,34 @@ const EditProfile = () => {
     );
   }, [id]);
 
+  const uploadFile = async () => {
+    const data = new FormData();
+    data.append("file", Image);
+    data.append("upload_preset", "images_preset");
+    try {
+      let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+      let resourceType = "image";
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`,
+        data
+      );
+      const secure_url = response.data.secure_url;
+      console.log(secure_url);
+      return secure_url;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   async function update(e) {
     e.preventDefault();
     try {
+      const imgUrl = await uploadFile();
       const res = await axios.put(`http://localhost:5000/api/users/${id}`, {
         name: Name,
         email: Email,
         password: Password,
-        image: Image,
+        image: imgUrl,
       });
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
@@ -38,20 +58,19 @@ const EditProfile = () => {
   }
 
   return (
-    <form className="profileC" onSubmit={update}>
+    <form className="ProfileEdit" onSubmit={update}>
       <input
         className="file"
         type="file"
-        required
         ref={myRef}
-        onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+        onChange={(e) => setImage(e.target.files[0])}
       />
       <div className="setImage">
         <div className="icon" onClick={() => myRef.current.click()}>
           <i className="bx bxs-camera"></i>
           <h4>click here</h4>
         </div>
-        <img src={`${Image}`} alt="" />
+        <img src={Image} alt="" />
       </div>
       <div className="InputC">
         <div className="profileInput">

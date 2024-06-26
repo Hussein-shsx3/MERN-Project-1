@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 const SignIn = () => {
   const [Email, setEmail] = useState("");
@@ -8,6 +8,7 @@ const SignIn = () => {
   const [accept, setAccept] = useState(false);
 
   const [emailError, setEmailError] = useState("");
+  axios.defaults.withCredentials = true;
   async function signIn(e) {
     e.preventDefault();
     setAccept(true);
@@ -35,7 +36,6 @@ const SignIn = () => {
   return (
     <div className="Sign">
       <form action="" onSubmit={signIn}>
-        <img src="./Images/img-1.jpg" alt="" />
         <div className="signInput">
           <h3>Email Address</h3>
           <div className="signIcon">

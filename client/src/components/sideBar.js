@@ -24,13 +24,19 @@ const SideBar = () => {
     }
   }
 
+  function removeActive() {
+    document.getElementById("sideBar").classList.remove("active");
+  }
+
   const [userName, setUserName] = useState(null);
+  const [Image, setImage] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("id");
     fetch(`http://localhost:5000/api/users/${id}`).then((res) =>
       res.json().then((data) => {
         setUserName(data.name);
+        setImage(data.image);
       })
     );
   }, [userName]);
@@ -43,7 +49,7 @@ const SideBar = () => {
         onClick={responsive}
       ></i>
       <Link to="/home/profile" className="myAccount">
-        <img src="./Images/img-1.jpg" alt="" />
+        <img src={Image} alt="" />
         <div className="accountInfo">
           <h4>{userName}</h4>
           <h5>Web developer</h5>
@@ -54,11 +60,11 @@ const SideBar = () => {
           <i className="bx bx-search"></i>
           <input type="search" placeholder="Search..." />
         </div>
-        <Link to="/home">
+        <Link to="/home" onClick={removeActive}>
           <i className="bx bx-group"></i>
           <h4>My Customers</h4>
         </Link>
-        <Link to="/home/addCustomers">
+        <Link to="/home/addCustomers" onClick={removeActive}>
           <i className="bx bx-user-plus"></i>
           <h4>Add Customer</h4>
         </Link>

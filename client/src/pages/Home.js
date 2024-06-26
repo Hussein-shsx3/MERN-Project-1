@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../css/Home.css";
 
 const Home = () => {
   const userId = localStorage.getItem("id");
@@ -15,18 +14,19 @@ const Home = () => {
       );
       if (res.status === 200) {
         setRun("deleted was successfully");
-        console.log(run);
+      } else {
+        setRun("deleted was successfully");
       }
-    } catch {
-      console.log("none");
+    } catch (err) {
+      console.log(err.status);
     }
   }
-
   useEffect(() => {
     fetch(`http://localhost:5000/api/customers/${userId}`).then((res) =>
       res.json().then((data) => setCustomers(data))
     );
-  }, [userId]);
+  }, [userId, run]);
+
   const showCustomers = Customers.map((Customer, index) => (
     <tr key={index}>
       <td className="id">{index + 1}</td>
@@ -53,18 +53,22 @@ const Home = () => {
   ));
   return (
     <div className="Home">
-      <table>
-        <tbody>
-          <tr>
-            <th className="id">#</th>
-            <th className="fullName">Full Name</th>
-            <th className="email">Email</th>
-            <th className="lastUpdate">Last Update</th>
-            <th className="action">Action</th>
-          </tr>
-          {showCustomers}
-        </tbody>
-      </table>
+      {Customers ? (
+        <table>
+          <tbody>
+            <tr>
+              <th className="id">#</th>
+              <th className="fullName">Full Name</th>
+              <th className="email">Email</th>
+              <th className="lastUpdate">Last Update</th>
+              <th className="action">Action</th>
+            </tr>
+            {showCustomers}
+          </tbody>
+        </table>
+      ) : (
+        <h1>No Data available</h1>
+      )}
     </div>
   );
 };

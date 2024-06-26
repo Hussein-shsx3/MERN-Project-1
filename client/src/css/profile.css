@@ -7,14 +7,28 @@
   overflow: hidden;
 }
 
-.profileC {
+.ProfileInfo {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profileC .setImage {
+.ProfileInfo img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+}
+
+.ProfileEdit {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProfileEdit .setImage {
   position: relative;
   width: 200px;
   height: 200px;
@@ -26,12 +40,12 @@
   margin-bottom: 25px;
 }
 
-.profileC .setImage img {
+.ProfileEdit .setImage img {
   width: 200px;
   height: 200px;
 }
 
-.profileC .setImage .icon {
+.ProfileEdit .setImage .icon {
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -45,16 +59,16 @@
   z-index: 1;
 }
 
-.profileC .setImage .icon i {
+.ProfileEdit .setImage .icon i {
   font-size: 40px;
   color: white;
 }
 
-.profileC .setImage .icon h4 {
+.ProfileEdit .setImage .icon h4 {
   color: white;
 }
 
-.profileC .file {
+.ProfileEdit .file {
   position: absolute;
   opacity: 0;
   top: 90px;
@@ -62,7 +76,7 @@
 }
 
 
-.profileC .InputC {
+.ProfileEdit .InputC {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -71,20 +85,20 @@
 }
 
 
-.profileC .profileInput {
+.ProfileEdit .profileInput {
   width: 48%;
   display: flex;
   flex-direction: column;
   margin: 15px 0px;
 }
 
-.profileC .profileInput label {
+.ProfileEdit .profileInput label {
   color: var(--text-color);
   margin-bottom: 5px;
   font-size: 18px;
 }
 
-.profileC .profileInput input {
+.ProfileEdit .profileInput input {
   color: var(--text-color);
   height: 35px;
   outline: none;
@@ -94,7 +108,7 @@
   font-size: 16px;
 }
 
-.profileC .submit {
+.ProfileEdit .submit {
   width: 48%;
   height: 35px;
   outline: none;
@@ -107,12 +121,12 @@
 }
 
 @media(min-width:750px) and (max-width:1300px) {
-  .Profile .profileC {
+  .Profile .ProfileEdit {
     width: 95%;
   }
 
-  .profileC .profileInput,
-  .profileC .submit {
+  .ProfileEdit .profileInput,
+  .ProfileEdit .submit {
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -121,11 +135,11 @@
 }
 
 @media(max-width:750px) {
-  .Profile .profileC {
+  .Profile .ProfileEdit {
     width: 95%;
   }
 
-  .profileC .profileInput {
+  .ProfileEdit .profileInput {
     width: 100%;
     display: flex;
     flex-direction: column;
