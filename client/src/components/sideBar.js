@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch } from "@mui/material";
 import { Link } from "react-router-dom";
+import { User } from "../Context/UserContext";
 
 const SideBar = () => {
   const [swap, setSwap] = useState(false);
   const [checked, setChecked] = React.useState(false);
+
+  const userNow = useContext(User);
+  const id = userNow.auth.userDetails._id;
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -32,14 +36,13 @@ const SideBar = () => {
   const [Image, setImage] = useState("");
 
   useEffect(() => {
-    const id = localStorage.getItem("id");
     fetch(`http://localhost:5000/api/users/${id}`).then((res) =>
       res.json().then((data) => {
         setUserName(data.name);
         setImage(data.image);
       })
     );
-  }, [userName]);
+  }, [userName, id]);
 
   return (
     <div className="sideBar" id="sideBar">
@@ -64,12 +67,12 @@ const SideBar = () => {
           <i className="bx bx-group"></i>
           <h4>My Customers</h4>
         </Link>
-        <Link to="/home/addCustomers" onClick={removeActive}>
+        <Link to="/homeaddCustomers" onClick={removeActive}>
           <i className="bx bx-user-plus"></i>
           <h4>Add Customer</h4>
         </Link>
       </nav>
-      <Link to="/" className="logout">
+      <Link to="/SignIn" className="logout">
         <i className="bx bx-exit"></i>
         <h4>Logout</h4>
       </Link>

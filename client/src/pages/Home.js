@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { User } from "../Context/UserContext";
 
 const Home = () => {
-  const userId = localStorage.getItem("id");
   const [Customers, setCustomers] = useState([]);
   const [run, setRun] = useState("");
+
+  const userNow = useContext(User);
+  const id = userNow.auth.userDetails._id;
 
   async function deleteCustomer(id) {
     try {
@@ -22,10 +25,10 @@ const Home = () => {
     }
   }
   useEffect(() => {
-    fetch(`http://localhost:5000/api/customers/${userId}`).then((res) =>
+    fetch(`http://localhost:5000/api/customers/${id}`).then((res) =>
       res.json().then((data) => setCustomers(data))
     );
-  }, [userId, run]);
+  }, [id, run]);
 
   const showCustomers = Customers.map((Customer, index) => (
     <tr key={index}>
@@ -42,7 +45,7 @@ const Home = () => {
         <Link to={`/home/edit/${Customer._id}`}>
           <i className="bx bx-edit-alt"></i>
         </Link>
-        <Link to=".">
+        <Link to="/home">
           <i
             className="bx bx-trash"
             onClick={() => deleteCustomer(Customer._id)}

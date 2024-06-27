@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Edit = () => {
   const customerId = window.location.pathname.split("/").slice(-1).join("");
@@ -11,6 +12,8 @@ const Edit = () => {
   const [birthday, setBirthDay] = useState("");
   const [telephone, setTelephone] = useState("");
   const [run, setRun] = useState("");
+
+  const nav = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/customers/information/${customerId}`).then(
@@ -43,7 +46,7 @@ const Edit = () => {
       );
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
-        window.location.pathname = "/";
+        nav("/home")
       }
     } catch (err) {
       console.log(err);

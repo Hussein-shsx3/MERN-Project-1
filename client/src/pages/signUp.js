@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { User } from "../Context/UserContext";
 
 const SignUp = () => {
   const [Email, setEmail] = useState("");
@@ -10,6 +11,9 @@ const SignUp = () => {
   const [accept, setAccept] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
+  const userNow = useContext(User);
+  console.log(userNow);
+  const nav = useNavigate();
   const myRef = useRef(null);
 
   const [emailError, setEmailError] = useState("");
@@ -44,8 +48,9 @@ const SignUp = () => {
     }
     try {
       if (flag) {
+        console.log("1");
         const imgUrl = await uploadFile();
-        console.log(imgUrl);
+        console.log("2");
         let res = await axios.post("http://localhost:5000/api/register", {
           name: Name,
           email: Email,
@@ -53,12 +58,18 @@ const SignUp = () => {
           image: imgUrl,
         });
         if (res.status === 201) {
-          localStorage.setItem("id", res.data._id);
-          window.location.pathname = "/";
+          const userDetails = res.data.user;
+          const token = res.data.token;
+          userNow.setAuth({ token, userDetails });
+          nav("/home");
         }
       }
     } catch (err) {
-      setEmailError(err.response.status);
+      if (err.response) {
+        setEmailError(err.response.status);
+      } else {
+        console.log("An error occurred:", err.message);
+      }
       console.log(err);
     }
   }

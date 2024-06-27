@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import SideBar from "./components/sideBar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { User } from "./Context/UserContext";
 
 const App = () => {
+  const user = useContext(User);
   return (
     <div className="App" id="App">
-      <SideBar />
-      <Outlet />
+      {user.auth.token ? (
+        <>
+          <SideBar />
+          <Outlet />
+        </>
+      ) : (
+        <Navigate to="/signIn" />
+      )}
     </div>
   );
 };

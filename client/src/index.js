@@ -20,6 +20,7 @@ import Show from "./components/show";
 import Profile from "./pages/profile";
 import ProfileInfo from "./components/profileInfo";
 import EditProfile from "./components/editProfile";
+import UserProvider from "./Context/UserContext";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
         element: <Profile />,
         children: [
           {
-            path: "/home/profile/",
+            path: "/home/profile",
             element: <ProfileInfo />,
           },
           {
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "/signIn",
     element: <SignIn />,
   },
   {
@@ -71,7 +72,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <UserProvider>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </UserProvider>
 );

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios, { Axios } from "axios";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { User } from "../Context/UserContext";
 
 const SignIn = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [accept, setAccept] = useState(false);
+
+  const userNow = useContext(User);
+  const nav = useNavigate();
 
   const [emailError, setEmailError] = useState("");
   axios.defaults.withCredentials = true;
@@ -25,8 +29,10 @@ const SignIn = () => {
           password: Password,
         });
         if (res.status === 200) {
-          localStorage.setItem("id", res.data._id);
-          window.location.pathname = "/home";
+          const userDetails = res.data.user;
+          const token = res.data.token;
+          userNow.setAuth({ token, userDetails });
+          nav("/home");
         }
       }
     } catch (err) {

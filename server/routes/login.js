@@ -21,8 +21,7 @@ router.post("/", async (req, res, next) => {
       const token = jwt.sign({ userId: findUser._id }, process.env.KEY, {
         expiresIn: "1h",
       });
-      res.cookie("token", token)
-      res.status(200).json(findUser);
+      res.status(200).json({ user: findUser, token: token });
     } else {
       res.status(400).send("Wrong email or password!");
     }

@@ -1,13 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
+import { User } from "../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Name, setName] = useState("");
   const [Image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const myRef = useRef(null);
-  const id = localStorage.getItem("id");
+
+  const userNow = useContext(User);
+  const id = userNow.auth.userDetails._id;
+
+  const nav = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/users/${id}`).then((res) =>
@@ -50,7 +57,7 @@ const EditProfile = () => {
       });
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
-        window.location.pathname = "/home";
+        nav("/home")
       }
     } catch (err) {
       console.log(err);
@@ -63,14 +70,17 @@ const EditProfile = () => {
         className="file"
         type="file"
         ref={myRef}
-        onChange={(e) => setImage(e.target.files[0])}
+        onChange={(e) => {
+          setImage(e.target.files[0]);
+          setImageUrl(URL.createObjectURL(e.target.files[0]));
+        }}
       />
       <div className="setImage">
         <div className="icon" onClick={() => myRef.current.click()}>
           <i className="bx bxs-camera"></i>
           <h4>click here</h4>
         </div>
-        <img src={Image} alt="" />
+        <img src={imageUrl ? imageUrl : Image} alt="" />
       </div>
       <div className="InputC">
         <div className="profileInput">

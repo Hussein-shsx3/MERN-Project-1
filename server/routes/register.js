@@ -1,6 +1,7 @@
 import express from "express";
 import Users from "../models/Usres.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -20,7 +21,10 @@ router.post("/", async (req, res, next) => {
         image: req.body.image,
       });
       await newUser.save();
-      res.status(201).json(newUser);
+      const token = jwt.sign({ userId: newUser._id }, process.env.KEY, {
+        expiresIn: "1h",
+      });
+      res.status(201).json({ user: newUser, token: token });
     }
   } catch (err) {
     next(err);

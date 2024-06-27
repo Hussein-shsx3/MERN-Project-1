@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { User } from "../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const AddCustomers = () => {
   const [firstName, setFirstName] = useState("");
@@ -9,9 +11,14 @@ const AddCustomers = () => {
   const [country, setCountry] = useState("");
   const [birthday, setBirthDay] = useState("");
   const [telephone, setTelephone] = useState("");
+
+  const userNow = useContext(User);
+  const id = userNow.auth.userDetails._id;
+
+  const nav = useNavigate();
+
   async function addCustomer(e) {
     e.preventDefault();
-    const id = localStorage.getItem("id");
     try {
       let res = await axios.post("http://localhost:5000/api/customers", {
         firstName: firstName,
@@ -24,7 +31,7 @@ const AddCustomers = () => {
         customerOwner: id,
       });
       if (res.status === 201) {
-        window.location.pathname = "/home";
+        nav("/home");
       }
     } catch (err) {
       console.log(err);
