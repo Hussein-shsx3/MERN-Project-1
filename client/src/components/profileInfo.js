@@ -17,7 +17,7 @@ const ProfileInfo = () => {
     <div className="ProfileInfo">
       <img src={user.image} alt="" />
       <h2>{user.name}</h2>
-      <Link to="/home/profile/editProfile">Edit Profile</Link>
+      <Link to="/profile/editProfile">Edit Profile</Link>
     </div>
   );
 };

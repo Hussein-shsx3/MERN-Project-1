@@ -46,7 +46,7 @@ const Edit = () => {
       );
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
-        nav("/home")
+        nav("/")
       }
     } catch (err) {
       console.log(err);
@@ -59,7 +59,7 @@ const Edit = () => {
       );
       if (res.status === 200) {
         setRun("deleted was successfully");
-        window.location.pathname = "/home";
+        window.location.pathname = "/";
         console.log(run);
       }
     } catch {

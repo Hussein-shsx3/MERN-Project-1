@@ -39,13 +39,13 @@ const Home = () => {
       <td className="email">{Customer.email}</td>
       <td className="lastUpdate">{Customer.lastUpdated.slice(0, 10)}</td>
       <td className="action">
-        <Link to={`/home/show/${Customer._id}`}>
+        <Link to={`/show/${Customer._id}`}>
           <i className="bx bx-show"></i>
         </Link>
-        <Link to={`/home/edit/${Customer._id}`}>
+        <Link to={`/edit/${Customer._id}`}>
           <i className="bx bx-edit-alt"></i>
         </Link>
-        <Link to="/home">
+        <Link to="/">
           <i
             className="bx bx-trash"
             onClick={() => deleteCustomer(Customer._id)}

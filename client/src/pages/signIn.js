@@ -9,6 +9,7 @@ const SignIn = () => {
   const [accept, setAccept] = useState(false);
 
   const userNow = useContext(User);
+  console.log(userNow);
   const nav = useNavigate();
 
   const [emailError, setEmailError] = useState("");
@@ -29,10 +30,11 @@ const SignIn = () => {
           password: Password,
         });
         if (res.status === 200) {
-          const userDetails = res.data.user;
-          const token = res.data.token;
-          userNow.setAuth({ token, userDetails });
-          nav("/home");
+          const userDetails = res.data.userDetails;
+          const accessToken = res.data.accessToken;
+          const refreshToken = res.data.refreshToken;
+          userNow.setAuth({ accessToken, refreshToken, userDetails });
+          nav("/");
         }
       }
     } catch (err) {

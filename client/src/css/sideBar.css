@@ -129,9 +129,11 @@
   margin-top: 48vh;
   width: 90%;
 }
-.logout:hover h4{
+
+.logout:hover h4 {
   color: var(--text-color-hover);
 }
+
 .darkMode {
   width: 90%;
   padding: 0px 20px;
@@ -182,6 +184,10 @@
 
   .sideBar.active {
     height: 100vh;
+  }
+
+  .logout {
+    margin-top: 0vh;
   }
 }
 

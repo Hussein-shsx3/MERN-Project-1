@@ -20,11 +20,23 @@ router.post("/", async (req, res, next) => {
         password: hashedPassword,
         image: req.body.image,
       });
+      const accessToken = jwt.sign(
+        { id: newUser._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "15m",
+        }
+      );
+      const refreshToken = jwt.sign(
+        { id: newUser._id },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: "7d",
+        }
+      );
+      findUser.refreshToken = refreshToken;
       await newUser.save();
-      const token = jwt.sign({ userId: newUser._id }, process.env.KEY, {
-        expiresIn: "1h",
-      });
-      res.status(201).json({ user: newUser, token: token });
+      res.status(201).json({ userDetails: newUser, accessToken, refreshToken });
     }
   } catch (err) {
     next(err);

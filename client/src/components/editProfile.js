@@ -57,7 +57,7 @@ const EditProfile = () => {
       });
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
-        nav("/home")
+        nav("/")
       }
     } catch (err) {
       console.log(err);

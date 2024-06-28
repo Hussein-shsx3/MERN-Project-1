@@ -25,35 +25,35 @@ import UserProvider from "./Context/UserContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <App />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {
-        path: "/home/edit/:id",
+        path: "/edit/:id",
         element: <Edit />,
       },
       {
-        path: "/home/show/:id",
+        path: "/show/:id",
         element: <Show />,
       },
       {
-        path: "/home/addCustomers",
+        path: "/addCustomers",
         element: <AddCustomers />,
       },
       {
-        path: "/home/profile",
+        path: "/profile",
         element: <Profile />,
         children: [
           {
-            path: "/home/profile",
+            path: "/profile",
             element: <ProfileInfo />,
           },
           {
-            path: "/home/profile/editProfile",
+            path: "/profile/editProfile",
             element: <EditProfile />,
           },
         ],

@@ -8,6 +8,8 @@ import regRoute from "./routes/register.js";
 import loginRoute from "./routes/login.js";
 import usersRoute from "./routes/usersRoute.js";
 import CustomersRoute from "./routes/customer.js";
+import tokenRoute from "./routes/token.js";
+import logoutRoute from "./routes/logout.js";
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use("/api/register", regRoute);
 app.use("/api/login", loginRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/customers", CustomersRoute);
+app.use("/api/token", tokenRoute);
+app.use("/api/logout", logoutRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = 500;

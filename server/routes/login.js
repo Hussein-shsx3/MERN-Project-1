@@ -18,10 +18,23 @@ router.post("/", async (req, res, next) => {
       findUser.password
     );
     if (passwordMatch) {
-      const token = jwt.sign({ userId: findUser._id }, process.env.KEY, {
-        expiresIn: "1h",
-      });
-      res.status(200).json({ user: findUser, token: token });
+      const accessToken = jwt.sign(
+        { id: findUser._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "15m",
+        }
+      );
+      const refreshToken = jwt.sign(
+        { id: findUser._id },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: "7d",
+        }
+      );
+      findUser.refreshToken = refreshToken;
+      await findUser.save();
+      res.status(200).json({ userDetails: findUser, accessToken, refreshToken });
     } else {
       res.status(400).send("Wrong email or password!");
     }

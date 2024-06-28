@@ -31,7 +31,7 @@ const AddCustomers = () => {
         customerOwner: id,
       });
       if (res.status === 201) {
-        nav("/home");
+        nav("/");
       }
     } catch (err) {
       console.log(err);

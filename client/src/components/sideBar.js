@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Switch } from "@mui/material";
 import { Link } from "react-router-dom";
 import { User } from "../Context/UserContext";
+import Logout from "./logout";
 
 const SideBar = () => {
   const [swap, setSwap] = useState(false);
@@ -51,7 +52,7 @@ const SideBar = () => {
         id="res"
         onClick={responsive}
       ></i>
-      <Link to="/home/profile" className="myAccount">
+      <Link to="/profile" className="myAccount" onClick={removeActive}>
         <img src={Image} alt="" />
         <div className="accountInfo">
           <h4>{userName}</h4>
@@ -63,19 +64,16 @@ const SideBar = () => {
           <i className="bx bx-search"></i>
           <input type="search" placeholder="Search..." />
         </div>
-        <Link to="/home" onClick={removeActive}>
+        <Link to="/" onClick={removeActive}>
           <i className="bx bx-group"></i>
           <h4>My Customers</h4>
         </Link>
-        <Link to="/homeaddCustomers" onClick={removeActive}>
+        <Link to="/addCustomers" onClick={removeActive}>
           <i className="bx bx-user-plus"></i>
           <h4>Add Customer</h4>
         </Link>
       </nav>
-      <Link to="/SignIn" className="logout">
-        <i className="bx bx-exit"></i>
-        <h4>Logout</h4>
-      </Link>
+      <Logout />
       <div className="darkMode">
         <i className="bx bx-moon"></i>
         <h4>Dark mode</h4>
