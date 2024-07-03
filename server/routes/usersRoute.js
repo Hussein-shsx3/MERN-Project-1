@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 
 const router = express.Router();
 
+
 //* Get all users
 router.get("/", async (req, res, next) => {
   try {

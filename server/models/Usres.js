@@ -6,6 +6,7 @@ const UsersSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String, required: true },
   refreshToken: { type: String },
+  isVerified: { type: Boolean, default: false },
 });
 
 const User = new mongoose.model("User", UsersSchema);

@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch } from "@mui/material";
 import { Link } from "react-router-dom";
-import { User } from "../Context/UserContext";
 import Logout from "./logout";
+import Cookie from "universal-cookie";
 
 const SideBar = () => {
+  const cookie = new Cookie();
   const [swap, setSwap] = useState(false);
   const [checked, setChecked] = React.useState(false);
 
-  const userNow = useContext(User);
-  const id = userNow.auth.userDetails._id;
+  const id = cookie.get("userId");
 
   const handleChange = (event) => {
     setChecked(event.target.checked);

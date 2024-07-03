@@ -19,10 +19,10 @@ router.post("/", async (req, res) => {
     const accessToken = jwt.sign(
       { id: User._id },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "5m" }
     );
     // Send the new access token to the client
-    res.json({ accessToken });
+    res.json({ accessToken, refreshToken, userDetails: User });
   } catch (error) {
     console.error("Token verification error:", error);
     // Handle verification failure

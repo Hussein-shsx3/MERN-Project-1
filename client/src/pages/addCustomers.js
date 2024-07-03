@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { User } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import Cookie from "universal-cookie";
 
 const AddCustomers = () => {
+  const cookie = new Cookie();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
@@ -12,8 +13,7 @@ const AddCustomers = () => {
   const [birthday, setBirthDay] = useState("");
   const [telephone, setTelephone] = useState("");
 
-  const userNow = useContext(User);
-  const id = userNow.auth.userDetails._id;
+  const id = cookie.get("userId");
 
   const nav = useNavigate();
 

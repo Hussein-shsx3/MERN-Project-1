@@ -146,6 +146,12 @@
   left: 33%;
 }
 
+.Sign .success{
+  width: 100%;
+  text-align: center;
+  color: green;
+  font-size: 20px;
+}
 
 @media(max-width:749px) {
   .Sign form{

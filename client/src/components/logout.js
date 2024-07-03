@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { User } from "../Context/UserContext";
+import Cookie from "universal-cookie";
 
 const Logout = () => {
+  const cookie = new Cookie();
   const userNow = useContext(User);
-  const refreshToken = userNow.auth.refreshToken;
+  const refreshToken = cookie.get("refreshToken");
   const nav = useNavigate();
   const handleLogout = async () => {
     try {
@@ -14,6 +16,7 @@ const Logout = () => {
       });
       if (res.status === 200) {
         userNow.setAuth(null);
+        cookie.remove("refreshToken");
         nav("/signIn");
       }
     } catch (error) {

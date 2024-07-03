@@ -22,19 +22,28 @@ router.post("/", async (req, res, next) => {
         { id: findUser._id },
         process.env.ACCESS_TOKEN_SECRET,
         {
-          expiresIn: "15m",
+          expiresIn: "5m",
         }
       );
       const refreshToken = jwt.sign(
         { id: findUser._id },
-        process.env.REFRESH_TOKEN_SECRET,
-        {
-          expiresIn: "7d",
-        }
+        process.env.REFRESH_TOKEN_SECRET
       );
+      res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict'
+      });
+      res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict'
+      });
       findUser.refreshToken = refreshToken;
       await findUser.save();
-      res.status(200).json({ userDetails: findUser, accessToken, refreshToken });
+      res
+        .status(200)
+        .json({ userDetails: findUser, accessToken, refreshToken });
     } else {
       res.status(400).send("Wrong email or password!");
     }

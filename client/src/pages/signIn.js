@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { User } from "../Context/UserContext";
+import Cookie from "universal-cookie";
 
 const SignIn = () => {
   const [Email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const SignIn = () => {
   const [accept, setAccept] = useState(false);
 
   const userNow = useContext(User);
-  console.log(userNow);
+  const cookie = new Cookie();
   const nav = useNavigate();
 
   const [emailError, setEmailError] = useState("");
@@ -29,11 +30,15 @@ const SignIn = () => {
           email: Email,
           password: Password,
         });
-        if (res.status === 200) {
-          const userDetails = res.data.userDetails;
+        if (res.status === 200 && res.data.userDetails.isVerified === true) {
+          const userId = res.data.userDetails._id;
           const accessToken = res.data.accessToken;
           const refreshToken = res.data.refreshToken;
-          userNow.setAuth({ accessToken, refreshToken, userDetails });
+          cookie.set("refreshToken", refreshToken);
+          cookie.set("accessToken", accessToken);
+          cookie.set("userId", userId);
+          userNow.setAuth({ accessToken, refreshToken, userId });
+          cookie.set("isVerified", true);
           nav("/");
         }
       }

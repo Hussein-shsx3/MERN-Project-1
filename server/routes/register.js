@@ -2,8 +2,19 @@ import express from "express";
 import Users from "../models/Usres.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 const router = express.Router();
+
+dotenv.config();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASSWORD,
+  },
+});
 
 //* Register
 router.post("/", async (req, res, next) => {
@@ -19,22 +30,33 @@ router.post("/", async (req, res, next) => {
         email: req.body.email,
         password: hashedPassword,
         image: req.body.image,
+        isVerified: false,
       });
+
+      await newUser.save();
+
       const accessToken = jwt.sign(
         { id: newUser._id },
         process.env.ACCESS_TOKEN_SECRET,
         {
-          expiresIn: "15m",
+          expiresIn: "5m",
         }
       );
+
       const refreshToken = jwt.sign(
         { id: newUser._id },
-        process.env.REFRESH_TOKEN_SECRET,
-        {
-          expiresIn: "7d",
-        }
+        process.env.REFRESH_TOKEN_SECRET
       );
-      findUser.refreshToken = refreshToken;
+
+      //* send the email verify
+      const url = `http://localhost:3000/verify/${accessToken}`;
+      await transporter.sendMail({
+        to: req.body.email,
+        subject: "Verify your email",
+        html: `<a href="${url}">Click here to verify your email</a>`,
+      });
+
+      newUser.refreshToken = refreshToken;
       await newUser.save();
       res.status(201).json({ userDetails: newUser, accessToken, refreshToken });
     }

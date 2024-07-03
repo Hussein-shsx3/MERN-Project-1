@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { User } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import Cookie from "universal-cookie";
 
 const EditProfile = () => {
+  const cookie = new Cookie();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Name, setName] = useState("");
@@ -11,8 +12,7 @@ const EditProfile = () => {
   const [imageUrl, setImageUrl] = useState("");
   const myRef = useRef(null);
 
-  const userNow = useContext(User);
-  const id = userNow.auth.userDetails._id;
+  const id = cookie.get("userId");
 
   const nav = useNavigate();
 
@@ -57,7 +57,7 @@ const EditProfile = () => {
       });
       if (res.status === 200) {
         localStorage.setItem("active", "activePage1");
-        nav("/")
+        nav("/");
       }
     } catch (err) {
       console.log(err);

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { User } from "../Context/UserContext";
+import Cookie from "universal-cookie";
 
 const Home = () => {
+  const cookie = new Cookie();
   const [Customers, setCustomers] = useState([]);
   const [run, setRun] = useState("");
 
-  const userNow = useContext(User);
-  const id = userNow.auth.userDetails._id;
+  const id = cookie.get("userId");
 
   async function deleteCustomer(id) {
     try {

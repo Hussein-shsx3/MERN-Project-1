@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { User } from "../Context/UserContext";
+import Cookie from "universal-cookie";
 
 const ProfileInfo = () => {
+  const cookie = new Cookie();
   const [user, setUser] = useState("");
 
-  const userNow = useContext(User);
-  const id = userNow.auth.userDetails._id;
+  const id = cookie.get("userId");
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/users/${id}`).then((res) =>

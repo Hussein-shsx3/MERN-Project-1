@@ -10,6 +10,7 @@ import "./css/sideBar.css";
 import "./css/show.css";
 import "./css/sign.css";
 import "./css/profile.css";
+import "./css/verify.css";
 import SignIn from "./pages/signIn";
 import SignUp from "./pages/signUp";
 import App from "./App";
@@ -21,6 +22,8 @@ import Profile from "./pages/profile";
 import ProfileInfo from "./components/profileInfo";
 import EditProfile from "./components/editProfile";
 import UserProvider from "./Context/UserContext";
+import Verify from "./pages/verify";
+import "./css/loading.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
@@ -65,6 +68,10 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
+    path: "/verify/:token",
+    element: <Verify />,
+  },
+  {
     path: "/signUp",
     element: <SignUp />,
   },
@@ -72,9 +79,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <UserProvider>
-    <React.StrictMode>
+  <React.StrictMode>
+    <UserProvider>
       <RouterProvider router={router} />
-    </React.StrictMode>
-  </UserProvider>
+    </UserProvider>
+  </React.StrictMode>
 );

@@ -10,6 +10,7 @@ import usersRoute from "./routes/usersRoute.js";
 import CustomersRoute from "./routes/customer.js";
 import tokenRoute from "./routes/token.js";
 import logoutRoute from "./routes/logout.js";
+import VerifyEmailRoute from "./routes/verifyEmail.js";
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/customers", CustomersRoute);
 app.use("/api/token", tokenRoute);
 app.use("/api/logout", logoutRoute);
+app.use("/api/verify", VerifyEmailRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = 500;
