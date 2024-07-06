@@ -17,7 +17,7 @@ const EditProfile = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    fetch(`https://mern-project-1-zpur.onrender.com/api/users/${id}`).then((res) =>
+    fetch(`https://mern-project-1-cr1m.onrender.com/api/users/${id}`).then((res) =>
       res.json().then((data) => {
         setEmail(data.email);
         setName(data.name);
@@ -49,7 +49,7 @@ const EditProfile = () => {
     e.preventDefault();
     try {
       const imgUrl = await uploadFile();
-      const res = await axios.put(`https://mern-project-1-zpur.onrender.com/api/users/${id}`, {
+      const res = await axios.put(`https://mern-project-1-cr1m.onrender.com/api/users/${id}`, {
         name: Name,
         email: Email,
         password: Password,

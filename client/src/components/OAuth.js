@@ -31,7 +31,7 @@ const OAuth = () => {
       //     image: user.photoURL,
       //   }),
       // });
-      let res = await axios.post("https://mern-project-1-zpur.onrender.com/api/auth/google", {
+      let res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/auth/google", {
         name: user.displayName,
         email: user.email,
         image: user.photoURL,

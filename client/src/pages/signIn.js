@@ -29,7 +29,7 @@ const SignIn = () => {
     }
     try {
       if (flag) {
-        let res = await axios.post("https://mern-project-1-zpur.onrender.com/api/login", {
+        let res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/login", {
           email: Email,
           password: Password,
         });

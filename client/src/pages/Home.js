@@ -13,7 +13,7 @@ const Home = () => {
   async function deleteCustomer(id) {
     try {
       const res = await axios.delete(
-        `https://mern-project-1-zpur.onrender.com/api/customers/${id}`
+        `https://mern-project-1-cr1m.onrender.com/api/customers/${id}`
       );
       if (res.status === 200) {
         setRun("deleted was successfully");
@@ -25,7 +25,7 @@ const Home = () => {
     }
   }
   useEffect(() => {
-    fetch(`https://mern-project-1-zpur.onrender.com/api/customers/${id}`).then((res) =>
+    fetch(`https://mern-project-1-cr1m.onrender.com/api/customers/${id}`).then((res) =>
       res.json().then((data) => setCustomers(data))
     );
   }, [id, run]);
