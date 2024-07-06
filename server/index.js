@@ -16,12 +16,7 @@ import GoogleAuthRoute from "./routes/googleAuth.js";
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(cookieParser());
 dotenv.config();
 
@@ -45,8 +40,8 @@ app.use((err, req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
   next();
 });
 
