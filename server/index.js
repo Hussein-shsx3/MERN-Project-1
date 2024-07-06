@@ -16,12 +16,7 @@ import GoogleAuthRoute from "./routes/googleAuth.js";
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["https://mern-project-1-1-a5cv.onrender.com"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(cookieParser());
 dotenv.config();
 
