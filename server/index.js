@@ -19,7 +19,10 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://mern-project-1-frontend.onrender.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://mern-project-1-frontend.onrender.com",
+    ],
     credentials: true,
   })
 );
