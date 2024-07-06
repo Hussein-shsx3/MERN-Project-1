@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/:token", async (req, res, next) => {
   try {
     const token = req.params.token;
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 
     const user = await Users.findById(decoded.id);
     if (!user) {

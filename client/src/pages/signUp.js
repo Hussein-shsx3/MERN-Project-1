@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { User } from "../Context/UserContext";
 import Cookie from "universal-cookie";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [Email, setEmail] = useState("");
@@ -20,8 +21,10 @@ const SignUp = () => {
 
   const [emailError, setEmailError] = useState("");
   const [verifyEmail, setVerifyEmail] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const uploadFile = async () => {
+    setLoading(true);
     const data = new FormData();
     data.append("file", Image);
     data.append("upload_preset", "images_preset");
@@ -33,9 +36,9 @@ const SignUp = () => {
         data
       );
       const secure_url = response.data.secure_url;
-      console.log(secure_url);
       return secure_url;
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   };
@@ -65,10 +68,12 @@ const SignUp = () => {
           cookie.set("refreshToken", refreshToken);
           cookie.set("userId", userId);
           userNow.setAuth({ accessToken, refreshToken, userId });
+          setLoading(false);
           setVerifyEmail(true);
         }
       }
     } catch (err) {
+      setLoading(false);
       if (err.response) {
         setEmailError(err.response.status);
       } else {
@@ -80,8 +85,12 @@ const SignUp = () => {
 
   return (
     <div className="Sign">
-      {!verifyEmail ? (
-        <p className="success">A verification request has been sent to your Gmail</p>
+      {verifyEmail ? (
+        <p className="success">
+          A verification request has been sent to your Gmail
+        </p>
+      ) : loading ? (
+        <span className="loader"></span>
       ) : (
         <form action="" onSubmit={signUp}>
           <input
@@ -154,6 +163,7 @@ const SignUp = () => {
             <p className="error">Error in your email</p>
           )}
           <button>SignUp</button>
+          <OAuth />
           <div className="swapSign">
             <h5>
               I have an account already ? <Link to="/">SignIn</Link>

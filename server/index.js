@@ -11,6 +11,7 @@ import CustomersRoute from "./routes/customer.js";
 import tokenRoute from "./routes/token.js";
 import logoutRoute from "./routes/logout.js";
 import VerifyEmailRoute from "./routes/verifyEmail.js";
+import GoogleAuthRoute from "./routes/googleAuth.js";
 
 const app = express();
 
@@ -31,6 +32,14 @@ app.use("/api/customers", CustomersRoute);
 app.use("/api/token", tokenRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/verify", VerifyEmailRoute);
+app.use("/api/auth/google", GoogleAuthRoute);
+
+//* for this error popup.ts:302 Cross-Origin-Opener-Policy policy would block the window.closed call.
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
 
 app.use((err, req, res, next) => {
   const statusCode = 500;

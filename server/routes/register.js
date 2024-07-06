@@ -49,7 +49,7 @@ router.post("/", async (req, res, next) => {
       );
 
       //* send the email verify
-      const url = `http://localhost:3000/verify/${accessToken}`;
+      const url = `http://localhost:3000/verify/${refreshToken}`;
       await transporter.sendMail({
         to: req.body.email,
         subject: "Verify your email",

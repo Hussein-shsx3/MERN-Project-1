@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { User } from "../Context/UserContext";
 import Cookie from "universal-cookie";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [accept, setAccept] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const userNow = useContext(User);
   const cookie = new Cookie();
@@ -17,6 +19,7 @@ const SignIn = () => {
   axios.defaults.withCredentials = true;
   async function signIn(e) {
     e.preventDefault();
+    setLoading(true);
     setAccept(true);
     let flag = true;
     if (Password.length < 8) {
@@ -39,51 +42,58 @@ const SignIn = () => {
           cookie.set("userId", userId);
           userNow.setAuth({ accessToken, refreshToken, userId });
           cookie.set("isVerified", true);
+          setLoading(false);
           nav("/");
         }
       }
     } catch (err) {
+      setLoading(false);
       setEmailError(err.response.status);
     }
   }
   return (
     <div className="Sign">
-      <form action="" onSubmit={signIn}>
-        <div className="signInput">
-          <h3>Email Address</h3>
-          <div className="signIcon">
-            <i className="bx bx-envelope"></i>
-            <input
-              type="email"
-              required
-              placeholder="Email..."
-              value={Email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+      {loading ? (
+        <span className="loader"></span>
+      ) : (
+        <form action="" onSubmit={signIn}>
+          <div className="signInput">
+            <h3>Email Address</h3>
+            <div className="signIcon">
+              <i className="bx bx-envelope"></i>
+              <input
+                type="email"
+                required
+                placeholder="Email..."
+                value={Email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="signInput">
-          <h3>Password</h3>
-          <div className="signIcon">
-            <i className="bx bx-lock-alt"></i>
-            <input
-              type="password"
-              required
-              placeholder="Passwrod..."
-              value={Password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <div className="signInput">
+            <h3>Password</h3>
+            <div className="signIcon">
+              <i className="bx bx-lock-alt"></i>
+              <input
+                type="password"
+                required
+                placeholder="Passwrod..."
+                value={Password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        {accept && emailError === 400 && (
-          <p className="error">Error in your email or password</p>
-        )}
-        <button>SignIn</button>
-        <div className="swapSign">
-          <Link to="/signUp">SignUp</Link>
-          <Link to="">Forgot Password?</Link>
-        </div>
-      </form>
+          {accept && emailError === 400 && (
+            <p className="error">Error in your email or password</p>
+          )}
+          <button>SignIn</button>
+          <OAuth />
+          <div className="swapSign">
+            <Link to="/signUp">SignUp</Link>
+            <Link to="">Forgot Password?</Link>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

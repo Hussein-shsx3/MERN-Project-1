@@ -1,15 +1,15 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookie from "universal-cookie";
 
 const Verify = () => {
-  const cookie = new Cookie();
   const { token } = useParams();
   const nav = useNavigate();
   const [message, setMessage] = useState("Verifying your email...");
 
   useEffect(() => {
+    const cookie = new Cookie();
     // تعريف دالة غير متزامنة داخل useEffect
     const verifyEmail = async () => {
       try {
@@ -29,9 +29,9 @@ const Verify = () => {
         );
       }
     };
-    console.log(message);
     verifyEmail();
-  }, [token, cookie, nav]);
+  }, [token, nav]);
+  console.log(message);
   return (
     <div className="Verify">
       <i className="bx bx-user-check"></i>
