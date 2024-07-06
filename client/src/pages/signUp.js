@@ -55,12 +55,15 @@ const SignUp = () => {
     try {
       if (flag) {
         const imgUrl = await uploadFile();
-        let res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/register", {
-          name: Name,
-          email: Email,
-          password: Password,
-          image: imgUrl,
-        });
+        let res = await axios.post(
+          `${process.env.REACT_APP_BACKEND_API}/api/register`,
+          {
+            name: Name,
+            email: Email,
+            password: Password,
+            image: imgUrl,
+          }
+        );
         if (res.status === 201) {
           const userId = res.data.userDetails._id;
           const accessToken = res.data.accessToken;

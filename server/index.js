@@ -16,7 +16,12 @@ import GoogleAuthRoute from "./routes/googleAuth.js";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 dotenv.config();
 
@@ -37,6 +42,12 @@ app.use((err, req, res, next) => {
     message,
     statusCode,
   });
+});
+
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
 });
 
 mongoose

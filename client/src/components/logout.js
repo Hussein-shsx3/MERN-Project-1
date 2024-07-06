@@ -11,7 +11,7 @@ const Logout = () => {
   const nav = useNavigate();
   const handleLogout = async () => {
     try {
-      let res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/logout", {
+      let res = await axios.post(`${process.env.REACT_APP_BACKEND_API}/api/logout`, {
         refreshToken,
       });
       if (res.status === 200) {

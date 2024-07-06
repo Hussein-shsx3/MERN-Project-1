@@ -14,7 +14,7 @@ const RefreshToken = ({ children }) => {
 
   const refresh = async () => {
     try {
-      const res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/token", {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_API}/api/token`, {
         refreshToken: refreshToken, // Send refreshToken to server
       });
       // Update the access token in context/state

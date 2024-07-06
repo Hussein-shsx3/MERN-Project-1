@@ -20,7 +20,7 @@ const AddCustomers = () => {
   async function addCustomer(e) {
     e.preventDefault();
     try {
-      let res = await axios.post("https://mern-project-1-zpur.onrender.com/api/customers", {
+      let res = await axios.post(`${process.env.REACT_APP_BACKEND_API}/api/customers`, {
         firstName: firstName,
         lastName: lastName,
         gender: gender,

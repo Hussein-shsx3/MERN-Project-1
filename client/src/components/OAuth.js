@@ -20,18 +20,7 @@ const OAuth = () => {
     try {
       const resultsFormGoogle = await signInWithPopup(auth, provider);
       const user = resultsFormGoogle.user;
-      // const res = await fetch("http://localhost:5000/api/auth/google", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({tch
-      //     name: user.displayName,
-      //     email: user.email,
-      //     image: user.photoURL,
-      //   }),
-      // });
-      let res = await axios.post("https://mern-project-1-cr1m.onrender.com/api/auth/google", {
+      let res = await axios.post(`${process.env.REACT_APP_BACKEND_API}/api/auth/google`, {
         name: user.displayName,
         email: user.email,
         image: user.photoURL,
