@@ -14,7 +14,7 @@ const Verify = () => {
     const verifyEmail = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/verify/${token}`
+          `https://mern-project-1-zpur.onrender.com/api/verify/${token}`
         );
         if (response.status === 200) {
           cookie.set("isVerified", true);

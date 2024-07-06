@@ -55,7 +55,7 @@ const SignUp = () => {
     try {
       if (flag) {
         const imgUrl = await uploadFile();
-        let res = await axios.post("http://localhost:5000/api/register", {
+        let res = await axios.post("https://mern-project-1-zpur.onrender.com/api/register", {
           name: Name,
           email: Email,
           password: Password,

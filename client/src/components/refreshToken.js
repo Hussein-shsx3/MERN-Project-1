@@ -14,7 +14,7 @@ const RefreshToken = ({ children }) => {
 
   const refresh = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/token", {
+      const res = await axios.post("https://mern-project-1-zpur.onrender.com/api/token", {
         refreshToken: refreshToken, // Send refreshToken to server
       });
       // Update the access token in context/state

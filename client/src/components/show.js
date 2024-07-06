@@ -4,7 +4,7 @@ const Show = () => {
   const customerId = window.location.pathname.split("/").slice(-1).join("");
   const [Customer, setCustomer] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/customers/information/${customerId}`).then((res) =>
+    fetch(`https://mern-project-1-zpur.onrender.com/api/customers/information/${customerId}`).then((res) =>
       res.json().then((data) => setCustomer(data))
     );
   }, [customerId]);

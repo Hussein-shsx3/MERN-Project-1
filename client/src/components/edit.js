@@ -16,7 +16,7 @@ const Edit = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/customers/information/${customerId}`).then(
+    fetch(`https://mern-project-1-zpur.onrender.com/customers/information/${customerId}`).then(
       (res) =>
         res.json().then((data) => {
           setFirstName(data.firstName);
@@ -33,7 +33,7 @@ const Edit = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/customers/${customerId}`,
+        `https://mern-project-1-zpur.onrender.com/api/customers/${customerId}`,
         {
           firstName: firstName,
           lastName: lastName,
@@ -55,7 +55,7 @@ const Edit = () => {
   async function deleteCustomer() {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/customers/information/${customerId}`
+        `https://mern-project-1-zpur.onrender.com/api/customers/information/${customerId}`
       );
       if (res.status === 200) {
         setRun("deleted was successfully");

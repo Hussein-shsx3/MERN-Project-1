@@ -37,7 +37,7 @@ const SideBar = () => {
   const [Image, setImage] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/users/${id}`).then((res) =>
+    fetch(`https://mern-project-1-zpur.onrender.com/api/users/${id}`).then((res) =>
       res.json().then((data) => {
         setUserName(data.name);
         setImage(data.image);
