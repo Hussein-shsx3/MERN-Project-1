@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://mern-project-1-zpur.onrender.com"],
+    origin: ["https://mern-project-1-1-a5cv.onrender.com"],
     credentials: true,
   })
 );
