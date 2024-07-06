@@ -13,7 +13,7 @@ const App = () => {
   const context = useContext(User);
   return (
     <div className="App" id="App">
-      {refreshToken && isVerified ? (
+      {refreshToken || isVerified ? (
         <RefreshToken>
           {context.auth.accessToken ? (
             <>
