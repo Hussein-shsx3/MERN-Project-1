@@ -17,6 +17,7 @@ const Logout = () => {
       if (res.status === 200) {
         userNow.setAuth(null);
         cookie.remove("refreshToken");
+        cookie.remove("accessToken");
         nav("/signIn");
       }
     } catch (error) {
