@@ -12,11 +12,25 @@ import tokenRoute from "./routes/token.js";
 import logoutRoute from "./routes/logout.js";
 import VerifyEmailRoute from "./routes/verifyEmail.js";
 import GoogleAuthRoute from "./routes/googleAuth.js";
+import helmet from "helmet";
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
+
+app.use(
+  helmet({
+    crossOriginOpenerPolicy: { policy: "same-origin" },
+    crossOriginEmbedderPolicy: { policy: "require-corp" },
+  })
+);
+
 app.use(cookieParser());
 dotenv.config();
 
@@ -37,12 +51,6 @@ app.use((err, req, res, next) => {
     message,
     statusCode,
   });
-});
-
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-  next();
 });
 
 mongoose
