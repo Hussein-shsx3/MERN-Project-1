@@ -49,7 +49,7 @@ router.post("/", async (req, res, next) => {
       );
 
       //* send the email verify
-      const url = `https://mern-project-1-frontend.onrender.com/verify/${refreshToken}`;
+      const url = `http://localhost:3000/verify/${refreshToken}`;
       await transporter.sendMail({
         to: req.body.email,
         subject: "Verify your email",

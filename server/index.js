@@ -23,7 +23,6 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://mern-project-1-frontend.onrender.com",
     ],
     credentials: true,
   })
