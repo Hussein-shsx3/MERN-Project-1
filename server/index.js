@@ -61,6 +61,16 @@ app.use((err, req, res, next) => {
 const clientBuildPath = path.join(__dirname, "../client/build");
 console.log("Serving static files from:", clientBuildPath);
 
+app.use(express.static(clientBuildPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(clientBuildPath, "index.html"), (err) => {
+    if (err) {
+      console.log("Error serving index.html:", err);
+      res.status(500).send(err);
+    }
+  });
+});
 
 mongoose
   .connect(process.env.MONGODB)
