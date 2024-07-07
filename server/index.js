@@ -16,9 +16,6 @@ import helmet from "helmet";
 
 const app = express();
 
-import path from "path";
-const __dirname = path.resolve();
-
 app.use(express.json());
 app.use(
   cors({
@@ -57,13 +54,6 @@ app.use((err, req, res, next) => {
     message,
     statusCode,
   });
-});
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-// Handle any other requests to send back the React app's index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
 
