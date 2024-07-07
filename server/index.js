@@ -13,8 +13,10 @@ import logoutRoute from "./routes/logout.js";
 import VerifyEmailRoute from "./routes/verifyEmail.js";
 import GoogleAuthRoute from "./routes/googleAuth.js";
 import helmet from "helmet";
+import path from "path";
 
 const app = express();
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(
@@ -55,6 +57,9 @@ app.use((err, req, res, next) => {
     statusCode,
   });
 });
+
+const clientBuildPath = path.join(__dirname, "../client/build");
+console.log("Serving static files from:", clientBuildPath);
 
 
 mongoose
