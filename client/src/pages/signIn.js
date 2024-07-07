@@ -29,10 +29,13 @@ const SignIn = () => {
     }
     try {
       if (flag) {
-        let res = await axios.post(`${process.env.REACT_APP_BACKEND_API}/api/login`, {
-          email: Email,
-          password: Password,
-        });
+        let res = await axios.post(
+          `${process.env.REACT_APP_BACKEND_API}/api/login`,
+          {
+            email: Email,
+            password: Password,
+          }
+        );
         if (res.status === 200 && res.data.userDetails.isVerified === true) {
           const userId = res.data.userDetails._id;
           const accessToken = res.data.accessToken;
@@ -48,6 +51,7 @@ const SignIn = () => {
       }
     } catch (err) {
       setLoading(false);
+      console.log(err);
       setEmailError(err.response.status);
     }
   }
