@@ -16,13 +16,14 @@ import helmet from "helmet";
 import path from "path";
 
 const app = express();
-const __dirname = path.resolve();
+const __dirname = path.resolve(); // Set __dirname to the root of the project
 
 app.use(express.json());
 app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "https://mern-project-1-frontend.onrender.com"
     ],
     credentials: true,
   })
