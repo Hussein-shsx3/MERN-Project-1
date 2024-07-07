@@ -13,17 +13,15 @@ import logoutRoute from "./routes/logout.js";
 import VerifyEmailRoute from "./routes/verifyEmail.js";
 import GoogleAuthRoute from "./routes/googleAuth.js";
 import helmet from "helmet";
-import path from "path";
 
 const app = express();
-const __dirname = path.resolve(); // Set __dirname to the root of the project
 
 app.use(express.json());
 app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://mern-project-1-frontend.onrender.com"
+      "https://mern-project-1-frontend.onrender.com"      
     ],
     credentials: true,
   })
@@ -55,20 +53,6 @@ app.use((err, req, res, next) => {
     success: false,
     message,
     statusCode,
-  });
-});
-
-const clientBuildPath = path.join(__dirname, "../client/build");
-console.log("Serving static files from:", clientBuildPath);
-
-app.use(express.static(clientBuildPath));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(clientBuildPath, "index.html"), (err) => {
-    if (err) {
-      console.log("Error serving index.html:", err);
-      res.status(500).send(err);
-    }
   });
 });
 
